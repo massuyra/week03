@@ -1,3 +1,4 @@
+rm(list = ls())
 library(tidyverse)
 emdat <- read.csv("EMDAT.csv")
 glimpse(emdat)
@@ -17,9 +18,11 @@ deaths_total_per_country <- affected %>%
     names_from = entity,
     values_from = deaths_all_disasters
   )
+view(deaths_total_per_country)
 deaths_mean_per_country <- deaths_total_per_country %>%
   colMeans(na.rm=TRUE) %>%
   round(2)
 deaths_mean_per_country_df <- as.data.frame(deaths_mean_per_country) %>%
   arrange(desc(deaths_mean_per_country))
 deaths_mean_per_country_df
+
